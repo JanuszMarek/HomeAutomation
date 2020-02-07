@@ -1,17 +1,9 @@
 ﻿using HomeAutomation.Models.Abstract;
-using System.ComponentModel.DataAnnotations;
 
 namespace HomeAutomation.Models.Entities
 {
-    public class Device : Concurrency
+    public class Device : Entity
     {
-        [Key]
-        public long Id { get; set; }
-
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-
         public decimal Price { get; set; }
 
         public long ProducerId { get; set; }

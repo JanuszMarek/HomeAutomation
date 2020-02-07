@@ -3,13 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeAutomation.Models.Entities
 {
-    public class Producer : Concurrency
+    public class Producer : Entity
     {
-        [Key]
-        public long Id { get; set; } 
-
-        public string Name { get; set; }
-
-        public string Description { get; set; }
     }
 }
