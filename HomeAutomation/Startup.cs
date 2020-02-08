@@ -32,6 +32,14 @@ namespace HomeAutomation
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(
                     Configuration["ConnectionString"]));
+
+            //register AutoMapper
+            services.AddAutoMapper(
+                typeof(EntityToModelProfile), 
+                typeof(ModelToEntityProfile));
+
+            RegisterRepositories(services);
+            RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,20 +62,21 @@ namespace HomeAutomation
             });
         }
 
-        protected void RegisterServicers(IServiceCollection services)
+        private void RegisterRepositories(IServiceCollection services)
         {
-            // repositories
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IDeviceRepository, DeviceRepository>();
             services.AddTransient<IDeviceTypeRepository, DeviceTypeRepository>();
             services.AddTransient<IProducerRepository, ProducerRepository>();
+        }
 
-            // services
+        private void RegisterServices(IServiceCollection services)
+        {
             services.AddTransient(typeof(IBaseService<>), typeof(BaseService<>));
-            //services.AddTransient<ICategoryRepository, CategoryRepository>();
-            //services.AddTransient<IDeviceRepository, DeviceRepository>();
-            //services.AddTransient<IDeviceTypeRepository, DeviceTypeRepository>();
+            services.AddTransient<IDeviceService, DeviceService>();
+            services.AddTransient<IDeviceTypeService, DeviceTypeService>();
+            services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProducerService, ProducerService>();
         }
     }
