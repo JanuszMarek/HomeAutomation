@@ -1,4 +1,10 @@
+using AutoMapper;
+using HomeAutomation.AutoMapper;
 using HomeAutomation.Models.Context;
+using HomeAutomation.Repositories;
+using HomeAutomation.Repositories.Interfaces;
+using HomeAutomation.Services;
+using HomeAutomation.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +52,23 @@ namespace HomeAutomation
             {
                 endpoints.MapControllers();
             });
+        }
+
+        protected void RegisterServicers(IServiceCollection services)
+        {
+            // repositories
+            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IDeviceRepository, DeviceRepository>();
+            services.AddTransient<IDeviceTypeRepository, DeviceTypeRepository>();
+            services.AddTransient<IProducerRepository, ProducerRepository>();
+
+            // services
+            services.AddTransient(typeof(IBaseService<>), typeof(BaseService<>));
+            //services.AddTransient<ICategoryRepository, CategoryRepository>();
+            //services.AddTransient<IDeviceRepository, DeviceRepository>();
+            //services.AddTransient<IDeviceTypeRepository, DeviceTypeRepository>();
+            services.AddTransient<IProducerService, ProducerService>();
         }
     }
 }

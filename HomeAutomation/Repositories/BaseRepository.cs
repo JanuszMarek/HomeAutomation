@@ -2,14 +2,12 @@
 using HomeAutomation.Models.Context;
 using HomeAutomation.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace HomeAutomation.Repositories
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : Entity
+    public class BaseRepository<T> : IBaseRepository<T> where T : Entity
     {
         protected ApplicationDbContext dbContext;
         protected DbSet<T> dbSet;

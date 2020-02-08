@@ -1,10 +1,10 @@
-﻿using HomeAutomation.Models.Abstract.Interfaces;
+﻿using HomeAutomation.Models.Abstract;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace HomeAutomation.Services.Interfaces
 {
-    public interface IBaseService<T> where T: IEntity
+    public interface IBaseService<T> where T: Entity
     {
         Task<T> GetByIdAsync(long id);
         Task<IEnumerable<T>> GetAsync();

@@ -1,38 +1,43 @@
-﻿using HomeAutomation.Models.Abstract.Interfaces;
+﻿using HomeAutomation.Models.Abstract;
+using HomeAutomation.Repositories.Interfaces;
 using HomeAutomation.Services.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace HomeAutomation.Services
 {
-    public abstract class BaseService<T> : IBaseService<T> where T : IEntity
+    public class BaseService<T> : IBaseService<T> where T : Entity
     {
-        public BaseService()
-        { }
+        protected IBaseRepository<T> repository;
 
-        public Task CreateAsync(T entity)
+        public BaseService(IBaseRepository<T> repository)
         {
+            this.repository = repository;
+        }
 
+        public async Task CreateAsync(T entity)
+        {
+            await repository.Create(entity);
         }
 
         public void Delete(T entity)
         {
-
+            repository.Delete(entity);
         }
 
-        public Task<IEnumerable<T>> GetAsync()
+        public async Task<IEnumerable<T>> GetAsync()
         {
-
+            return await repository.Get();
         }
 
-        public Task<T> GetByIdAsync(long id)
+        public async Task<T> GetByIdAsync(long id)
         {
-
+            return await repository.GetById(id);
         }
 
         public void Update(T entity)
         {
-
+            repository.Update(entity);
         }
     }
 }
