@@ -22,10 +22,10 @@ namespace HomeAutomation.Controllers
             this.producerService = producerService;
         }
 
-        [HttpGet()]
-        public async Task<IEnumerable<Producer>> GetListing()
-        {
-            return await producerService.GetAsync();
-        }
+        //[HttpGet()]
+        //public async Task<IEnumerable<Producer>> GetListing()
+        //{
+        //    return await producerService.Get();
+        //}
     }
 }

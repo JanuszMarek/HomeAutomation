@@ -1,4 +1,5 @@
-﻿using HomeAutomation.Models.Entities;
+﻿using AutoMapper;
+using HomeAutomation.Models.Entities;
 using HomeAutomation.Repositories.Interfaces;
 using HomeAutomation.Services.Interfaces;
 
@@ -6,7 +7,7 @@ namespace HomeAutomation.Services
 {
     public class DeviceTypeService : BaseService<DeviceType>, IDeviceTypeService
     {
-        public DeviceTypeService(IBaseRepository<DeviceType> repository) : base(repository)
+        public DeviceTypeService(IBaseRepository<DeviceType> repository, IMapper mapper) : base(repository, mapper)
         { }
     }
 }
