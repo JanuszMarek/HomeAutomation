@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HomeAutomation.Models.DTO;
 using HomeAutomation.Models.Entities;
 using HomeAutomation.Repositories;
 using HomeAutomation.Repositories.Interfaces;
@@ -22,10 +23,10 @@ namespace HomeAutomation.Controllers
             this.producerService = producerService;
         }
 
-        //[HttpGet()]
-        //public async Task<IEnumerable<Producer>> GetListing()
-        //{
-        //    return await producerService.Get();
-        //}
+        [HttpGet()]
+        public async Task<IEnumerable<ProducerModel>> GetListing()
+        {
+            return await producerService.Get<ProducerModel>();
+        }
     }
 }

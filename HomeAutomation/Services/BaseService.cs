@@ -5,6 +5,7 @@ using HomeAutomation.Repositories.Interfaces;
 using HomeAutomation.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace HomeAutomation.Services
@@ -30,15 +31,20 @@ namespace HomeAutomation.Services
 
         public async Task DeleteAsync(long id)
         {
-            var entity = await GetByIdAsync(id);
+            var entity = await repository.GetEntityById(id);
 
             repository.Delete(entity);
             await SaveChangesAsync();
         }
 
-        public async Task<T> GetByIdAsync(long id)
+        public async Task<DTO> GetByIdAsync<DTO>(long id) where DTO : IBaseModel
         {
-            return await repository.GetById(id);
+            return await repository.GetById<DTO>(id);
+        }
+
+        public async Task<List<DTO>> Get<DTO>(Expression<Func<DTO, bool>> filter = null, Func<DTO, object> orderBy = null) where DTO : IBaseModel
+        {
+            return await repository.Get(filter, orderBy);
         }
 
         public async Task SaveChangesAsync()
@@ -51,7 +57,7 @@ namespace HomeAutomation.Services
 
         public async Task UpdateAsync(IBaseUpdateModel updateModel)
         {
-            T entity = await GetByIdAsync(updateModel.Id);
+            var entity = await repository.GetEntityById(updateModel.Id);
             mapper.Map(updateModel, entity);
             repository.Update(entity);
 
