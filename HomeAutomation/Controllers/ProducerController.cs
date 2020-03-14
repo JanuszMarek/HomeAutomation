@@ -9,33 +9,52 @@ namespace HomeAutomation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProducerController : BaseController<Producer, ProducerInputModel, ProducerUpdateModel, IProducerService>
+    public class ProducerController : ControllerBase
     {
-        public ProducerController(IProducerService producerService): base(producerService)
+        IProducerService service;
+        public ProducerController(IProducerService service)
         {
+            this.service = service;
         }
 
         [HttpGet]
-        public override async Task<IActionResult> GetListing<T>()
+        public async Task<IActionResult> GetListing()
         {
-            return await base.GetListing<ProducerModel>();
+            var listing = await service.Get<ProducerModel>();
+            return Ok(listing);
         }
 
         [HttpGet("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<Producer>))]
-        public override async Task<IActionResult> GetDetail<T>([FromRoute] long id) => await base.GetDetail<ProducerModel>(id);
+        public async Task<IActionResult> GetDetail([FromRoute] long id)
+        {
+            var model = await service.GetByIdAsync<ProducerModel>(id);
+            return Ok(model);
+        }
 
         [HttpPost]
         [ServiceFilter(typeof(ModelValidationFilter))]
-        public override async Task<IActionResult> Create(ProducerInputModel inputModel) => await base.Create(inputModel);
+        public async Task<IActionResult> Create(ProducerInputModel inputModel)
+        {
+            var createdId = await service.CreateAsync(inputModel);
+            return Ok(new { id = createdId });
+        }
 
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<Producer>))]
         [ServiceFilter(typeof(ModelValidationFilter))]
-        public override async Task<IActionResult> Update(ProducerUpdateModel updateModel) => await base.Update(updateModel);
+        public async Task<IActionResult> Update(ProducerUpdateModel updateModel)
+        {
+            await service.UpdateAsync(updateModel);
+            return Ok();
+        }
 
         [HttpDelete("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<Producer>))]
-        public override async Task<IActionResult> Delete([FromRoute] long id) => await base.Delete(id);
+        public async Task<IActionResult> Delete([FromRoute] long id)
+        {
+            await service.DeleteAsync(id);
+            return Ok();
+        }
     }
 }

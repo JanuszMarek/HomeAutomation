@@ -9,30 +9,52 @@ namespace HomeAutomation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DeviceTypeController : BaseController<DeviceType, DeviceTypeInputModel, DeviceTypeUpdateModel, IDeviceTypeService>
+    public class DeviceTypeController : ControllerBase
     {
-        public DeviceTypeController(IDeviceTypeService DeviceTypeService) : base(DeviceTypeService)
+        IDeviceTypeService service;
+        public DeviceTypeController(IDeviceTypeService service)
         {
+            this.service = service;
         }
 
         [HttpGet]
-        public override async Task<IActionResult> GetListing<T>() => await base.GetListing<DeviceTypeModel>();
+        public async Task<IActionResult> GetListing()
+        {
+            var listing = await service.Get<DeviceTypeModel>();
+            return Ok(listing);
+        }
 
         [HttpGet("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<DeviceType>))]
-        public override async Task<IActionResult> GetDetail<T>([FromRoute] long id) => await base.GetDetail<DeviceTypeModel>(id);
+        public async Task<IActionResult> GetDetail([FromRoute] long id)
+        {
+            var model = await service.GetByIdAsync<DeviceTypeModel>(id);
+            return Ok(model);
+        }
 
         [HttpPost]
         [ServiceFilter(typeof(ModelValidationFilter))]
-        public override async Task<IActionResult> Create(DeviceTypeInputModel inputModel) => await base.Create(inputModel);
+        public async Task<IActionResult> Create(DeviceTypeInputModel inputModel)
+        {
+            var createdId = await service.CreateAsync(inputModel);
+            return Ok(new { id = createdId });
+        }
 
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<DeviceType>))]
         [ServiceFilter(typeof(ModelValidationFilter))]
-        public override async Task<IActionResult> Update(DeviceTypeUpdateModel updateModel) => await base.Update(updateModel);
+        public async Task<IActionResult> Update(DeviceTypeUpdateModel updateModel)
+        {
+            await service.UpdateAsync(updateModel);
+            return Ok();
+        }
 
         [HttpDelete("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<DeviceType>))]
-        public override async Task<IActionResult> Delete([FromRoute] long id) => await base.Delete(id);
+        public async Task<IActionResult> Delete([FromRoute] long id)
+        {
+            await service.DeleteAsync(id);
+            return Ok();
+        }
     }
 }
