@@ -14,19 +14,10 @@ namespace HomeAutomation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProducerController : ControllerBase
+    public class ProducerController : BaseController<Producer, ProducerModel, ProducerInputModel, ProducerUpdateModel>
     {
-        private IProducerService producerService;
-
-        public ProducerController(IProducerService producerService)
+        public ProducerController(IProducerService producerService): base(producerService)
         {
-            this.producerService = producerService;
-        }
-
-        [HttpGet()]
-        public async Task<IEnumerable<ProducerModel>> GetListing()
-        {
-            return await producerService.Get<ProducerModel>();
         }
     }
 }

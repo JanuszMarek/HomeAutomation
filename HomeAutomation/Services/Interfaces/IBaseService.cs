@@ -13,8 +13,7 @@ namespace HomeAutomation.Services.Interfaces
         Task<List<DTO>> Get<DTO>(Expression<Func<DTO, bool>> filter = null, Func<DTO, object> orderBy = null) where DTO : IBaseModel;
         Task UpdateAsync(IBaseUpdateModel updateModel);
         Task DeleteAsync(long id);
-        Task CreateAsync(IBaseInputModel entity);
+        Task<long> CreateAsync(IBaseInputModel entity);
         Task SaveChangesAsync();
-
     }
 }

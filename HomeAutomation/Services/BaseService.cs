@@ -21,12 +21,13 @@ namespace HomeAutomation.Services
             this.mapper = mapper;
         }
 
-        public async Task CreateAsync(IBaseInputModel inputModel)
+        public async Task<long> CreateAsync(IBaseInputModel inputModel)
         {
             var entity = mapper.Map<T>(inputModel);
 
             repository.Create(entity);
             await SaveChangesAsync();
+            return entity.Id;
         }
 
         public async Task DeleteAsync(long id)
@@ -60,7 +61,6 @@ namespace HomeAutomation.Services
             var entity = await repository.GetEntityById(updateModel.Id);
             mapper.Map(updateModel, entity);
             repository.Update(entity);
-
             await SaveChangesAsync();
         }
     }
