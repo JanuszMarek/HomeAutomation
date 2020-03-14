@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeAutomation.Models.DTO
 {
-    public class ProducerModel : IProducerModel
+    public class ProducerModel : IBaseModel
     {
         public long Id { get; set; }
 

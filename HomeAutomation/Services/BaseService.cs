@@ -21,6 +21,11 @@ namespace HomeAutomation.Services
             this.mapper = mapper;
         }
 
+        public async Task<bool> Exists(long id)
+        {
+            return await repository.Exists(id);
+        }
+
         public async Task<long> CreateAsync(IBaseInputModel inputModel)
         {
             var entity = mapper.Map<T>(inputModel);
@@ -28,6 +33,13 @@ namespace HomeAutomation.Services
             repository.Create(entity);
             await SaveChangesAsync();
             return entity.Id;
+        }
+        public async Task UpdateAsync(IBaseUpdateModel updateModel)
+        {
+            var entity = await repository.GetEntityById(updateModel.Id);
+            mapper.Map(updateModel, entity);
+            repository.Update(entity);
+            await SaveChangesAsync();
         }
 
         public async Task DeleteAsync(long id)
@@ -54,14 +66,6 @@ namespace HomeAutomation.Services
             {
                 throw new Exception($"Saving {nameof(T)} failed on server");
             }
-        }
-
-        public async Task UpdateAsync(IBaseUpdateModel updateModel)
-        {
-            var entity = await repository.GetEntityById(updateModel.Id);
-            mapper.Map(updateModel, entity);
-            repository.Update(entity);
-            await SaveChangesAsync();
         }
     }
 }

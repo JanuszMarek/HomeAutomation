@@ -1,6 +1,8 @@
 using AutoMapper;
 using HomeAutomation.AutoMapper;
+using HomeAutomation.Filters;
 using HomeAutomation.Models.Context;
+using HomeAutomation.Models.Entities;
 using HomeAutomation.Repositories;
 using HomeAutomation.Repositories.Interfaces;
 using HomeAutomation.Services;
@@ -40,6 +42,7 @@ namespace HomeAutomation
 
             RegisterRepositories(services);
             RegisterServices(services);
+            RegisterFilters(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,6 +81,13 @@ namespace HomeAutomation
             services.AddTransient<IDeviceTypeService, DeviceTypeService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProducerService, ProducerService>();
+        }
+
+        private void RegisterFilters(IServiceCollection services)
+        {
+            services.AddScoped<ModelValidationFilter>();
+            services.AddScoped<ModelExistFilter<Producer>>();
+
         }
     }
 }
