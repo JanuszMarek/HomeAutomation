@@ -1,5 +1,5 @@
 ﻿using HomeAutomation.Filters;
-using HomeAutomation.Models.DTO;
+using HomeAutomation.Models.DTO.Producer;
 using HomeAutomation.Models.Entities;
 using HomeAutomation.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -9,15 +9,21 @@ namespace HomeAutomation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProducerController : BaseController<Producer, ProducerModel, ProducerInputModel, ProducerUpdateModel, IProducerService>
+    public class ProducerController : BaseController<Producer, ProducerInputModel, ProducerUpdateModel, IProducerService>
     {
         public ProducerController(IProducerService producerService): base(producerService)
         {
         }
 
+        [HttpGet]
+        public override async Task<IActionResult> GetListing<T>()
+        {
+            return await base.GetListing<ProducerModel>();
+        }
+
         [HttpGet("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<Producer>))]
-        public override async Task<IActionResult> GetDetail([FromRoute] long id) => await base.GetDetail(id);
+        public override async Task<IActionResult> GetDetail<T>([FromRoute] long id) => await base.GetDetail<ProducerModel>(id);
 
         [HttpPost]
         [ServiceFilter(typeof(ModelValidationFilter))]

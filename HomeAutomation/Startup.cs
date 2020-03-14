@@ -87,7 +87,9 @@ namespace HomeAutomation
         {
             services.AddScoped<ModelValidationFilter>();
             services.AddScoped<ModelExistFilter<Producer>>();
-
+            services.AddScoped<ModelExistFilter<Category>>();
+            services.AddScoped<ModelExistFilter<DeviceType>>();
+            services.AddScoped<ModelExistFilter<Device>>();
         }
     }
 }

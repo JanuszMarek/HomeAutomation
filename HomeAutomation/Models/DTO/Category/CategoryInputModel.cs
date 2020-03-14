@@ -1,14 +1,10 @@
 ﻿using HomeAutomation.Models.Abstract;
 using HomeAutomation.Models.DTO.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace HomeAutomation.Models.DTO
+namespace HomeAutomation.Models.DTO.Category
 {
-    public abstract class ProducerInputModel : Concurrency, IBaseInputModel
+    public abstract class CategoryInputModel : Concurrency, IBaseInputModel
     {
         [Required]
         [MaxLength(100)]

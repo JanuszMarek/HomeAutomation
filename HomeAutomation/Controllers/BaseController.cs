@@ -14,11 +14,10 @@ namespace HomeAutomation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public abstract class BaseController<T, Model, InputModel, UpdateModel, TService> : ControllerBase
+    public class BaseController<T, TInput, TUpdate, TService> : ControllerBase
         where T : Entity
-        where Model : IBaseModel
-        where InputModel : IBaseInputModel
-        where UpdateModel : IBaseUpdateModel
+        where TInput: IBaseInputModel
+        where TUpdate: IBaseUpdateModel
         where TService : IBaseService<T>
     {
         public TService service;
@@ -27,13 +26,13 @@ namespace HomeAutomation.Controllers
             this.service = service;
         }
 
-        public virtual async Task<IActionResult> Create(InputModel inputModel)
+        public virtual async Task<IActionResult> Create(TInput inputModel)
         {
             var createdId = await service.CreateAsync(inputModel);
             return Ok(new { id = createdId });
         }
 
-        public virtual async Task<IActionResult> Update(UpdateModel updateModel)
+        public virtual async Task<IActionResult> Update(TUpdate updateModel)
         {
             await service.UpdateAsync(updateModel);
             return Ok();
@@ -45,16 +44,15 @@ namespace HomeAutomation.Controllers
             return Ok();
         }
 
-        [HttpGet]
-        public virtual async Task<IActionResult> GetListing()
+        public virtual async Task<IActionResult> GetListing<TListing>() where TListing: IBaseModel
         {
-            var listing = await service.Get<Model>();
+            var listing = await service.Get<TListing>();
             return Ok(listing);
         }
 
-        public virtual async Task<IActionResult> GetDetail([FromRoute] long id)
+        public virtual async Task<IActionResult> GetDetail<TDetail>([FromRoute] long id) where TDetail: IBaseModel
         {
-            var model = await service.GetByIdAsync<Model>(id);
+            var model = await service.GetByIdAsync<TDetail>(id);
             return Ok(model);
         }
     }
