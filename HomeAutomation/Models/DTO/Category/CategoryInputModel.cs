@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeAutomation.Models.DTO.Category
 {
-    public abstract class CategoryInputModel : Concurrency, IBaseInputModel
+    public class CategoryInputModel : Concurrency, IBaseInputModel
     {
         [Required]
         [MaxLength(100)]

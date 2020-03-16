@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeAutomation.Models.DTO.Device
 {
-    public abstract class DeviceInputModel : Concurrency, IBaseInputModel
+    public class DeviceInputModel : Concurrency, IBaseInputModel
     {
         [Required]
         [MaxLength(100)]

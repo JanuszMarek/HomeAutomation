@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using HomeAutomation.Models.DTO;
+using HomeAutomation.Models.DTO.Category;
+using HomeAutomation.Models.DTO.Device;
+using HomeAutomation.Models.DTO.DeviceType;
 using HomeAutomation.Models.DTO.Producer;
 using HomeAutomation.Models.Entities;
 using System;
@@ -22,17 +25,20 @@ namespace HomeAutomation.AutoMapper
 
         private void ModelToDevice()
         {
-
+            CreateMap<DeviceInputModel, Device>();
+            CreateMap<DeviceUpdateModel, Device>();
         }
 
         private void ModelToDeviceType()
         {
-
+            CreateMap<DeviceTypeInputModel, DeviceType>();
+            CreateMap<DeviceTypeUpdateModel, DeviceType>();
         }
 
         private void ModelToCategory()
         {
-
+            CreateMap<CategoryInputModel, Category>();
+            CreateMap<CategoryUpdateModel, Category>();
         }
 
         private void ModelToProducer()
