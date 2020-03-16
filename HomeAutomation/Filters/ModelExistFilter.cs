@@ -22,7 +22,6 @@ namespace HomeAutomation.Filters
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-
             long id;
             if (context.ActionArguments.ContainsKey("id"))
             {
@@ -46,6 +45,7 @@ namespace HomeAutomation.Filters
                 string msg = $"Data with id {id} can not be found.";
                 context.Result = new NotFoundObjectResult(msg);
             }
+            await next();
         }
     }
 }
