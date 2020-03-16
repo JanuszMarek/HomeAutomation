@@ -13,6 +13,5 @@ namespace HomeAutomation.Models.Entities
         public long DeviceTypeId { get; set; }
 
         public DeviceType DeviceType { get; set; }
-
     }
 }

@@ -34,10 +34,11 @@ namespace HomeAutomation.Services
             await SaveChangesAsync();
             return entity.Id;
         }
-        public async Task UpdateAsync(IBaseUpdateModel updateModel)
+        public async Task UpdateAsync(long id, IBaseInputModel updateModel)
         {
-            var entity = await repository.GetEntityById(updateModel.Id);
+            var entity = await repository.GetEntityById(id);
             mapper.Map(updateModel, entity);
+
             repository.Update(entity);
             await SaveChangesAsync();
         }

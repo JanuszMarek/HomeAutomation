@@ -1,3 +1,4 @@
+using HomeAutomation.Models.Abstract.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace HomeAutomation.Models.Abstract
 {
-    public class Concurrency
+    public class Concurrency : IConcurrency
     {
         public byte[] RowVersion { get; set; }
+
+        public DateTime CreateDate { get; set; }
+
+        public DateTime UpdateDate { get; set; }
     }
 }

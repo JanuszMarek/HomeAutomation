@@ -20,7 +20,7 @@ namespace HomeAutomation.Controllers
         [HttpGet]
         public async Task<IActionResult> GetListing()
         {
-            var listing = await service.Get<DeviceTypeModel>();
+            var listing = await service.Get<DeviceTypeListingModel>();
             return Ok(listing);
         }
 
@@ -28,7 +28,7 @@ namespace HomeAutomation.Controllers
         [ServiceFilter(typeof(ModelExistFilter<DeviceType>))]
         public async Task<IActionResult> GetDetail([FromRoute] long id)
         {
-            var model = await service.GetByIdAsync<DeviceTypeModel>(id);
+            var model = await service.GetByIdAsync<DeviceTypeBaseModel>(id);
             return Ok(model);
         }
 
@@ -43,9 +43,9 @@ namespace HomeAutomation.Controllers
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<DeviceType>))]
         [ServiceFilter(typeof(ModelValidationFilter))]
-        public async Task<IActionResult> Update(DeviceTypeUpdateModel updateModel)
+        public async Task<IActionResult> Update([FromRoute] long id, DeviceTypeInputModel updateModel)
         {
-            await service.UpdateAsync(updateModel);
+            await service.UpdateAsync(id, updateModel);
             return Ok();
         }
 

@@ -20,7 +20,7 @@ namespace HomeAutomation.Controllers
         [HttpGet]
         public async Task<IActionResult> GetListing()
         {
-            var listing = await service.Get<CategoryModel>();
+            var listing = await service.Get<CategoryListingModel>();
             return Ok(listing);
         }
 
@@ -28,7 +28,7 @@ namespace HomeAutomation.Controllers
         [ServiceFilter(typeof(ModelExistFilter<Category>))]
         public async Task<IActionResult> GetDetail([FromRoute] long id)
         {
-            var model = await service.GetByIdAsync<CategoryModel>(id);
+            var model = await service.GetByIdAsync<CategoryBaseModel>(id);
             return Ok(model);
         }
 
@@ -43,9 +43,9 @@ namespace HomeAutomation.Controllers
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<Category>))]
         [ServiceFilter(typeof(ModelValidationFilter))]
-        public async Task<IActionResult> Update(CategoryUpdateModel updateModel)
+        public async Task<IActionResult> Update([FromRoute] long id, CategoryInputModel updateModel)
         {
-            await service.UpdateAsync(updateModel);
+            await service.UpdateAsync(id, updateModel);
             return Ok();
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeAutomation.Models.Abstract
 {
-    public class Entity : ConcurrencyDates, IEntity
+    public class Entity : Concurrency, IEntity
     {
         public long Id { get; set; }
         public string Name { get; set; }
