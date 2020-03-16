@@ -54,7 +54,7 @@ namespace HomeAutomation.Repositories
 
         public async Task<DTO> GetById<DTO>(long id) where DTO : IBaseModel
         {
-            return await dbSet.ProjectTo<DTO>(mapper.ConfigurationProvider).FirstOrDefaultAsync(x => x.Id == id);
+            return await dbSet.Where(x => x.Id == id).ProjectTo<DTO>(mapper.ConfigurationProvider).FirstOrDefaultAsync();
         }
 
         public async Task<List<DTO>> Get<DTO>(Expression<Func<DTO, bool>> filter = null,Func<DTO, object> orderBy = null) where DTO : IBaseModel
