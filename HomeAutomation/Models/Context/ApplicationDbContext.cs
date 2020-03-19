@@ -17,6 +17,7 @@ namespace HomeAutomation.Models.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             CreateDatabaseSchema(modelBuilder);
+            SeedDatabase(modelBuilder);
         }
 
         protected void CreateDatabaseSchema(ModelBuilder modelBuilder)
@@ -26,6 +27,11 @@ namespace HomeAutomation.Models.Context
             DeviceType.CreateDatabaseScheme(modelBuilder);
             Device.CreateDatabaseScheme(modelBuilder);
         }
+
+        protected void SeedDatabase(ModelBuilder modelBuilder)
+        {
+            modelBuilder.SeedData(DatabaseSeed.ProducersSeed());
+            modelBuilder.SeedData(DatabaseSeed.CategoriesSeed());
         }
     }
 }
