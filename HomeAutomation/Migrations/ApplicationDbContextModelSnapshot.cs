@@ -54,34 +54,34 @@ namespace HomeAutomation.Migrations
                         new
                         {
                             Id = 1L,
-                            CreateDate = new DateTime(2020, 3, 19, 20, 19, 53, 324, DateTimeKind.Local).AddTicks(1022),
+                            CreateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Możesz zarówno sterować oświetleniem jak również uruchomić schematy automatycznego włączania lub wyłączania poszczególnych punktów oświetlenia w zależności detekcji określonego zjawiska.",
                             Name = "Oświetlenie",
-                            UpdateDate = new DateTime(2020, 3, 19, 20, 19, 53, 324, DateTimeKind.Local).AddTicks(1079)
+                            UpdateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2L,
-                            CreateDate = new DateTime(2020, 3, 19, 20, 19, 53, 324, DateTimeKind.Local).AddTicks(1098),
+                            CreateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "TV, Audio",
                             Name = "Rozrywka",
-                            UpdateDate = new DateTime(2020, 3, 19, 20, 19, 53, 324, DateTimeKind.Local).AddTicks(1101)
+                            UpdateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3L,
-                            CreateDate = new DateTime(2020, 3, 19, 20, 19, 53, 324, DateTimeKind.Local).AddTicks(1105),
+                            CreateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kamerki, sensory",
                             Name = "Bezpieczeństwo",
-                            UpdateDate = new DateTime(2020, 3, 19, 20, 19, 53, 324, DateTimeKind.Local).AddTicks(1108)
+                            UpdateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4L,
-                            CreateDate = new DateTime(2020, 3, 19, 20, 19, 53, 324, DateTimeKind.Local).AddTicks(1111),
+                            CreateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Oczyszczacze, nawilżacze, odkurzacze",
                             Name = "Komfort",
-                            UpdateDate = new DateTime(2020, 3, 19, 20, 19, 53, 324, DateTimeKind.Local).AddTicks(1113)
+                            UpdateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -202,34 +202,34 @@ namespace HomeAutomation.Migrations
                         new
                         {
                             Id = 1L,
-                            CreateDate = new DateTime(2020, 3, 19, 20, 19, 53, 315, DateTimeKind.Local).AddTicks(9407),
+                            CreateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Xiaomi Najlepsze",
                             Name = "Xiaomi",
-                            UpdateDate = new DateTime(2020, 3, 19, 20, 19, 53, 321, DateTimeKind.Local).AddTicks(3826)
+                            UpdateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2L,
-                            CreateDate = new DateTime(2020, 3, 19, 20, 19, 53, 321, DateTimeKind.Local).AddTicks(4726),
+                            CreateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Xiaomi Najlepsze",
                             Name = "Xiaomi Aqara",
-                            UpdateDate = new DateTime(2020, 3, 19, 20, 19, 53, 321, DateTimeKind.Local).AddTicks(4761)
+                            UpdateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3L,
-                            CreateDate = new DateTime(2020, 3, 19, 20, 19, 53, 321, DateTimeKind.Local).AddTicks(4787),
+                            CreateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Xiaomi Najlepsze",
                             Name = "Xiaomi Mija",
-                            UpdateDate = new DateTime(2020, 3, 19, 20, 19, 53, 321, DateTimeKind.Local).AddTicks(4792)
+                            UpdateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4L,
-                            CreateDate = new DateTime(2020, 3, 19, 20, 19, 53, 321, DateTimeKind.Local).AddTicks(4797),
+                            CreateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "SONOFF was founded out of a simple need: make your lives easier, smart and better. we’ve the ambition to design and create the most innovative smart products with a simple and affordable way to give you a smarter home.",
                             Name = "Sonoff",
-                            UpdateDate = new DateTime(2020, 3, 19, 20, 19, 53, 321, DateTimeKind.Local).AddTicks(4800)
+                            UpdateDate = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 

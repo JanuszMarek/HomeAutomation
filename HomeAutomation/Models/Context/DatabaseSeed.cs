@@ -21,8 +21,8 @@ namespace HomeAutomation.Models.Context
 
             collection.ForEach(item =>
             {
-                item.CreateDate = DateTime.Now;
-                item.UpdateDate = DateTime.Now;
+                item.CreateDate = new DateTime(2020, 01, 01);
+                item.UpdateDate = new DateTime(2020, 01, 01);
             });
 
             return collection;
@@ -40,8 +40,8 @@ namespace HomeAutomation.Models.Context
 
             collection.ForEach(item =>
             {
-                item.CreateDate = DateTime.Now;
-                item.UpdateDate = DateTime.Now;
+                item.CreateDate = new DateTime(2020, 01, 01);
+                item.UpdateDate = new DateTime(2020, 01, 01);
             });
 
             return collection;
