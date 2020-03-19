@@ -26,19 +26,16 @@ namespace HomeAutomation.AutoMapper
         private void ModelToDevice()
         {
             CreateMap<DeviceInputModel, Device>();
-            CreateMap<DeviceUpdateModel, Device>();
         }
 
         private void ModelToDeviceType()
         {
             CreateMap<DeviceTypeInputModel, DeviceType>();
-            CreateMap<DeviceTypeUpdateModel, DeviceType>();
         }
 
         private void ModelToCategory()
         {
             CreateMap<CategoryInputModel, Category>();
-            CreateMap<CategoryUpdateModel, Category>();
         }
 
         private void ModelToProducer()
@@ -47,12 +44,6 @@ namespace HomeAutomation.AutoMapper
                 .ForMember(dst => dst.Name, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dst => dst.Description, opt => opt.MapFrom(src => src.Description))
                 .ForMember(dst => dst.RowVersion, opt => opt.Ignore());
-
-            CreateMap<ProducerUpdateModel, Producer>()
-                .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dst => dst.Name, opt => opt.MapFrom(src => src.Name))
-                .ForMember(dst => dst.Description, opt => opt.MapFrom(src => src.Description))
-                .ForMember(dst => dst.RowVersion, opt => opt.MapFrom(src => src.RowVersion));
         }
     }
 }

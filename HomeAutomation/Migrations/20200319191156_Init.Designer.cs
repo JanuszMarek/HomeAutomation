@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeAutomation.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200127192438_Init")]
+    [Migration("20200319191156_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,24 +28,29 @@ namespace HomeAutomation.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreationDate")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifyDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category","HA");
                 });
 
             modelBuilder.Entity("HomeAutomation.Models.Entities.Device", b =>
@@ -55,20 +60,20 @@ namespace HomeAutomation.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreationDate")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.Property<long>("DeviceTypeId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("ModifyDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -77,7 +82,12 @@ namespace HomeAutomation.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -85,7 +95,7 @@ namespace HomeAutomation.Migrations
 
                     b.HasIndex("ProducerId");
 
-                    b.ToTable("Devices");
+                    b.ToTable("Device","HA");
                 });
 
             modelBuilder.Entity("HomeAutomation.Models.Entities.DeviceType", b =>
@@ -98,26 +108,31 @@ namespace HomeAutomation.Migrations
                     b.Property<long>("CategoryId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("CreationDate")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifyDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("DeviceTypes");
+                    b.ToTable("DeviceType","HA");
                 });
 
             modelBuilder.Entity("HomeAutomation.Models.Entities.Producer", b =>
@@ -127,47 +142,52 @@ namespace HomeAutomation.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreationDate")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ModifyDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.Property<byte[]>("RowVersion")
-                        .HasColumnType("varbinary(max)");
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Producers");
+                    b.ToTable("Producer","HA");
                 });
 
             modelBuilder.Entity("HomeAutomation.Models.Entities.Device", b =>
                 {
                     b.HasOne("HomeAutomation.Models.Entities.DeviceType", "DeviceType")
-                        .WithMany()
+                        .WithMany("Devices")
                         .HasForeignKey("DeviceTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("FK_Device_DeviceType")
                         .IsRequired();
 
                     b.HasOne("HomeAutomation.Models.Entities.Producer", "Producer")
-                        .WithMany()
+                        .WithMany("Devices")
                         .HasForeignKey("ProducerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("FK_Device_Producer")
                         .IsRequired();
                 });
 
             modelBuilder.Entity("HomeAutomation.Models.Entities.DeviceType", b =>
                 {
                     b.HasOne("HomeAutomation.Models.Entities.Category", "Category")
-                        .WithMany()
+                        .WithMany("DeviceTypes")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("FK_DeviceType_Category")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

@@ -1,4 +1,5 @@
-﻿using HomeAutomation.Models.Entities;
+﻿using HomeAutomation.Extensions;
+using HomeAutomation.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeAutomation.Models.Context
@@ -12,5 +13,19 @@ namespace HomeAutomation.Models.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<DeviceType> DeviceTypes { get; set; }
         public DbSet<Device> Devices { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            CreateDatabaseSchema(modelBuilder);
+        }
+
+        protected void CreateDatabaseSchema(ModelBuilder modelBuilder)
+        {
+            Producer.CreateDatabaseScheme(modelBuilder);
+            Category.CreateDatabaseScheme(modelBuilder);
+            DeviceType.CreateDatabaseScheme(modelBuilder);
+            Device.CreateDatabaseScheme(modelBuilder);
+        }
+        }
     }
 }
