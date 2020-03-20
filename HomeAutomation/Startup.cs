@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace HomeAutomation
 {
@@ -51,6 +52,8 @@ namespace HomeAutomation
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                DatabaseMigrationUpdate(app.ApplicationServices);
             }
 
             app.UseHttpsRedirection();
@@ -90,6 +93,11 @@ namespace HomeAutomation
             services.AddScoped<ModelExistFilter<Category>>();
             services.AddScoped<ModelExistFilter<DeviceType>>();
             services.AddScoped<ModelExistFilter<Device>>();
+        }
+
+        private void DatabaseMigrationUpdate(IServiceProvider services)
+        {
+            DatabaseUpdateMigrator.Migrate(services);
         }
     }
 }

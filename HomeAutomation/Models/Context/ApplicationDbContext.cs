@@ -73,7 +73,7 @@ namespace HomeAutomation.Models.Context
 		{
 			var changedEntries = ChangeTracker
 					.Entries()
-					.Where(x => (x.State == EntityState.Modified || x.State == EntityState.Modified) && x.Entity is IConcurrency);
+					.Where(x => (x.State == EntityState.Added || x.State == EntityState.Modified) && x.Entity is IConcurrency);
 
 			if (changedEntries.Count() > 0)
 			{
