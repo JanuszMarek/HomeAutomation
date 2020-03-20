@@ -1,5 +1,6 @@
 using AutoMapper;
 using HomeAutomation.AutoMapper;
+using HomeAutomation.Extensions;
 using HomeAutomation.Filters;
 using HomeAutomation.Models.Context;
 using HomeAutomation.Models.Entities;
@@ -30,6 +31,7 @@ namespace HomeAutomation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.ConfigureSwagger();
 
             //register Db Context
             services.AddDbContext<ApplicationDbContext>(
@@ -54,6 +56,8 @@ namespace HomeAutomation
                 app.UseDeveloperExceptionPage();
 
                 DatabaseMigrationUpdate(app.ApplicationServices);
+
+                app.UseSwaggerConfiguration();
             }
 
             app.UseHttpsRedirection();
