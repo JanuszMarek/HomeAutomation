@@ -36,5 +36,13 @@ namespace HomeAutomation.Controllers
             var lookup = await lookupService.GetEntityToLookupAsync<DeviceType>();
             return Ok(lookup);
         }
+
+        [HttpGet("producers")]
+        [ResponseCache(CacheProfileName = ResponseCacheProfile.ShortTimeCache)]
+        public async Task<IActionResult> GetProducersLookup()
+        {
+            var lookup = await lookupService.GetEntityToLookupAsync<Producer>();
+            return Ok(lookup);
+        }
     }
 }

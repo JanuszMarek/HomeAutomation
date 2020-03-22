@@ -60,6 +60,10 @@ namespace HomeAutomation.AutoMapper
             CreateMap<DeviceType, LookupModel>()
                 .ForMember(dst => dst.Value, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dst => dst.Label, opt => opt.MapFrom(src => src.Name));
+
+            CreateMap<Producer, LookupModel>()
+                .ForMember(dst => dst.Value, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dst => dst.Label, opt => opt.MapFrom(src => src.Name));
         }
     }
 }
