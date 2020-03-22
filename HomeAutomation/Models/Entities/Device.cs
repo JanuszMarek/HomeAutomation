@@ -5,8 +5,6 @@ namespace HomeAutomation.Models.Entities
 {
     public class Device : Entity
     {
-        public decimal Price { get; set; }
-
         public long ProducerId { get; set; }
 
         public Producer Producer { get; set; }

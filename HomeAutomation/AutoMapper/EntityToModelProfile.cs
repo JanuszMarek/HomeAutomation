@@ -31,7 +31,6 @@ namespace HomeAutomation.AutoMapper
             CreateMap<Device, DeviceModel>()
                 .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dst => dst.Name, opt => opt.MapFrom(src => src.Name))
-                .ForMember(dst => dst.Price, opt => opt.MapFrom(src => src.Price))
                 .ForMember(dst => dst.DeviceTypeId, opt => opt.MapFrom(src => src.DeviceTypeId))
                 .ForMember(dst => dst.ProducerId, opt => opt.MapFrom(src => src.ProducerId));
 
