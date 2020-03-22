@@ -20,15 +20,15 @@ namespace HomeAutomation.Controllers
         [HttpGet]
         public async Task<IActionResult> GetListing()
         {
-            var listing = await service.Get<DeviceBaseModel>();
+            var listing = await service.Get<DeviceListingModel>();
             return Ok(listing);
         }
 
         [HttpGet("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<Device>))]
-        public async Task<IActionResult> GetDetail([FromRoute] long id)
+        public async Task<IActionResult> Get([FromRoute] long id)
         {
-            var model = await service.GetByIdAsync<DeviceBaseModel>(id);
+            var model = await service.GetByIdAsync<DeviceEditModel>(id);
             return Ok(model);
         }
 

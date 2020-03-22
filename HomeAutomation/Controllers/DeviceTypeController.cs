@@ -26,9 +26,9 @@ namespace HomeAutomation.Controllers
 
         [HttpGet("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<DeviceType>))]
-        public async Task<IActionResult> GetDetail([FromRoute] long id)
+        public async Task<IActionResult> Get([FromRoute] long id)
         {
-            var model = await service.GetByIdAsync<DeviceTypeBaseModel>(id);
+            var model = await service.GetByIdAsync<DeviceTypeEditModel>(id);
             return Ok(model);
         }
 

@@ -26,9 +26,9 @@ namespace HomeAutomation.Controllers
 
         [HttpGet("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<Category>))]
-        public async Task<IActionResult> GetDetail([FromRoute] long id)
+        public async Task<IActionResult> Get([FromRoute] long id)
         {
-            var model = await service.GetByIdAsync<CategoryBaseModel>(id);
+            var model = await service.GetByIdAsync<CategoryEditModel>(id);
             return Ok(model);
         }
 
