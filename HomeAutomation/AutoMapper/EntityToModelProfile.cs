@@ -5,10 +5,6 @@ using HomeAutomation.Models.DTO.Device;
 using HomeAutomation.Models.DTO.DeviceType;
 using HomeAutomation.Models.DTO.Producer;
 using HomeAutomation.Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HomeAutomation.AutoMapper
 {
@@ -20,6 +16,7 @@ namespace HomeAutomation.AutoMapper
             DeviceTypeToModel();
             CategoryToModel();
             ProducerToModel();
+            EntitiesToLookupModel();
         }
 
         private void DeviceToModel()
@@ -52,6 +49,17 @@ namespace HomeAutomation.AutoMapper
             CreateMap<Producer, ProducerModel>();
             CreateMap<Producer, ProducerListingModel>();
             CreateMap<Producer, ProducerEditModel>();
+        }
+
+        private void EntitiesToLookupModel()
+        {
+            CreateMap<Category, LookupModel>()
+                .ForMember(dst => dst.Value, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dst => dst.Label, opt => opt.MapFrom(src => src.Name));
+
+            CreateMap<DeviceType, LookupModel>()
+                .ForMember(dst => dst.Value, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dst => dst.Label, opt => opt.MapFrom(src => src.Name));
         }
     }
 }

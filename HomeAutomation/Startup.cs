@@ -2,6 +2,7 @@ using AutoMapper;
 using HomeAutomation.AutoMapper;
 using HomeAutomation.Extensions;
 using HomeAutomation.Filters;
+using HomeAutomation.Models.Configuration;
 using HomeAutomation.Models.Context;
 using HomeAutomation.Models.Entities;
 using HomeAutomation.Repositories;
@@ -10,6 +11,7 @@ using HomeAutomation.Services;
 using HomeAutomation.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +33,7 @@ namespace HomeAutomation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMemoryCache();
             services.ConfigureSwagger();
 
             //register Db Context
@@ -46,6 +49,7 @@ namespace HomeAutomation
             RegisterRepositories(services);
             RegisterServices(services);
             RegisterFilters(services);
+            RegisterResponseCache(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,6 +92,7 @@ namespace HomeAutomation
             services.AddTransient<IDeviceTypeService, DeviceTypeService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProducerService, ProducerService>();
+            services.AddTransient<ILookupService, LookupService>();
         }
 
         private void RegisterFilters(IServiceCollection services)
@@ -102,6 +107,26 @@ namespace HomeAutomation
         private void DatabaseMigrationUpdate(IServiceProvider services)
         {
             DatabaseUpdateMigrator.Migrate(services);
+        }
+
+        private void RegisterResponseCache(IServiceCollection services)
+        {
+            services.AddMvc(options =>
+            {
+                options.CacheProfiles.Add(ResponseCacheProfile.ShortTimeCache,
+                    new CacheProfile()
+                    {
+                        Duration = ResponseCacheProfile.ShortTimeCacheDuration,
+                        Location = ResponseCacheLocation.Client
+                    });
+
+                options.CacheProfiles.Add(ResponseCacheProfile.LongTimeCache,
+                  new CacheProfile()
+                  {
+                      Duration = ResponseCacheProfile.LongTimeCacheDuration,
+                      Location = ResponseCacheLocation.Client
+                  });
+            });
         }
     }
 }
