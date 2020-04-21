@@ -85,8 +85,8 @@ namespace HomeAutomation.Models.Context
 					}
                     if (entry.Entity is IConcurrency && entry.State == EntityState.Added)
                     {
-                        entry.CurrentValues[nameof(IConcurrency.CreateDate)] = DateTime.UtcNow;
-                        entry.CurrentValues[nameof(IConcurrency.CreateDate)] = entry.CurrentValues[nameof(IConcurrency.CreateDate)];
+                        entry.CurrentValues[nameof(IConcurrency.CreateDate)] = DateTime.Now;
+                        entry.CurrentValues[nameof(IConcurrency.UpdateDate)] = entry.CurrentValues[nameof(IConcurrency.CreateDate)];
                     }
                 }
 			}
