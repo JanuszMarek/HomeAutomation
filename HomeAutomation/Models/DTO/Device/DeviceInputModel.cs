@@ -1,5 +1,6 @@
 ﻿using HomeAutomation.Models.Abstract;
 using HomeAutomation.Models.DTO.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace HomeAutomation.Models.DTO.Device
@@ -20,5 +21,7 @@ namespace HomeAutomation.Models.DTO.Device
 
         [Required]
         public long DeviceTypeId { get; set; }
+
+        public IFormFile LogoFile { get; set; }
     }
 }

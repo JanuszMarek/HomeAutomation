@@ -18,6 +18,7 @@ namespace HomeAutomation.Models.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<DeviceType> DeviceTypes { get; set; }
         public DbSet<Device> Devices { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,6 +40,7 @@ namespace HomeAutomation.Models.Context
             Category.CreateDatabaseScheme(modelBuilder);
             DeviceType.CreateDatabaseScheme(modelBuilder);
             Device.CreateDatabaseScheme(modelBuilder);
+            Image.CreateDatabaseScheme(modelBuilder);
         }
 
         protected void SeedDatabase(ModelBuilder modelBuilder)

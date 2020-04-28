@@ -1,15 +1,14 @@
 ﻿using HomeAutomation.Models.Abstract.Interfaces;
-using HomeAutomation.Models.Entities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HomeAutomation.Models.Abstract
 {
-    public class Entity : Concurrency, IEntity
+    public interface IBusinessEntity : IEntity
     {
-        public long Id { get; set; }
+        string Name { get; set; }
+        string Description { get; set; }
     }
 }

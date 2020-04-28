@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HomeAutomation.Models.Entities
 {
-    public class Category : Entity
+    public class Category : BusinessEntity
     {
         public ICollection<DeviceType> DeviceTypes { get; set; }
 

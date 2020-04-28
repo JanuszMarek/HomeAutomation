@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HomeAutomation.Models.Entities
 {
-    public class DeviceType : Entity
+    public class DeviceType : BusinessEntity
     {
         [ForeignKey("Category")]
         public long CategoryId { get; set; }

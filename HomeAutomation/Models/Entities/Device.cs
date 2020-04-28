@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeAutomation.Models.Entities
 {
-    public class Device : Entity
+    public class Device : BusinessEntity
     {
         public long ProducerId { get; set; }
 

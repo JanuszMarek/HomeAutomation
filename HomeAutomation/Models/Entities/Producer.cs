@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HomeAutomation.Models.Entities
 {
-    public class Producer : Entity
+    public class Producer : BusinessEntity
     {
         public ICollection<Device> Devices { get; set; }
 

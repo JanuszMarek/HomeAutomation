@@ -1,5 +1,6 @@
 ﻿using HomeAutomation.Models.Abstract;
 using HomeAutomation.Models.DTO.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace HomeAutomation.Models.DTO.Producer
@@ -12,5 +13,7 @@ namespace HomeAutomation.Models.DTO.Producer
 
         [MaxLength(1000)]
         public string Description { get; set; }
+
+        public IFormFile LogoFile { get; set; }
     }
 }

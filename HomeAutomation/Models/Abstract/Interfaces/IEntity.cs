@@ -8,7 +8,5 @@ namespace HomeAutomation.Models.Abstract.Interfaces
     public interface IEntity
     {
         long Id { get; set; }
-        string Name { get; set; }
-        string Description { get; set; }
     }
 }
