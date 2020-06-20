@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeAutomation.Models.DTO.Category
 {
-    public class CategoryInputModel : Concurrency, IBaseInputModel
+    public class CategoryInputModel : Concurrency, IBusinessInputModel
     {
         [Required]
         [MaxLength(100)]

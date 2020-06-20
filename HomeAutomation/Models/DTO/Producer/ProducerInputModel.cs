@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeAutomation.Models.DTO.Producer
 {
-    public class ProducerInputModel : Concurrency, IBaseInputModel
+    public class ProducerInputModel : Concurrency, IBusinessInputModel
     {
         [Required]
         [MaxLength(100)]

@@ -16,7 +16,7 @@ namespace HomeAutomation.Filters
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            KeyValuePair<string, object> param = context.ActionArguments.SingleOrDefault(p => p.Value is IBaseInputModel);
+            KeyValuePair<string, object> param = context.ActionArguments.SingleOrDefault(p => p.Value is IBusinessInputModel);
             if (param.Value == null)
             {
                 string msg = "Input data is null";
