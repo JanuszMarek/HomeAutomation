@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomeAutomation.Repositories.Interfaces
 {
-    public interface IUploadedImageRepository: IBaseRepository<UploadedImage>
+    public interface IImageRepository: IBaseRepository<Image>
     {
     }
 }

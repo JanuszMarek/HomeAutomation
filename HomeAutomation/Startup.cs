@@ -5,6 +5,8 @@ using HomeAutomation.Filters;
 using HomeAutomation.Models.Configuration;
 using HomeAutomation.Models.Context;
 using HomeAutomation.Models.Entities;
+using HomeAutomation.Providers;
+using HomeAutomation.Providers.Interfaces;
 using HomeAutomation.Repositories;
 using HomeAutomation.Repositories.Interfaces;
 using HomeAutomation.Services;
@@ -47,10 +49,12 @@ namespace HomeAutomation
                 typeof(EntityToModelProfile), 
                 typeof(ModelToEntityProfile));
 
+            RegisterConfigClasses(services);
             RegisterRepositories(services);
             RegisterServices(services);
             RegisterFilters(services);
             RegisterResponseCache(services);
+            RegisterProviders(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,6 +81,11 @@ namespace HomeAutomation
             });
         }
 
+        private void RegisterConfigClasses(IServiceCollection services)
+        {
+            services.Configure<AzureStorageConfig>(Configuration.GetSection("AzureStorageConfig"));
+        }
+
         private void RegisterRepositories(IServiceCollection services)
         {
             services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
@@ -94,6 +103,7 @@ namespace HomeAutomation
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IProducerService, ProducerService>();
             services.AddTransient<ILookupService, LookupService>();
+            services.AddTransient<IImageService, ImageService>();
         }
 
         private void RegisterFilters(IServiceCollection services)
@@ -103,6 +113,11 @@ namespace HomeAutomation
             services.AddScoped<ModelExistFilter<Category>>();
             services.AddScoped<ModelExistFilter<DeviceType>>();
             services.AddScoped<ModelExistFilter<Device>>();
+        }
+
+        private void RegisterProviders(IServiceCollection services)
+        {
+            services.AddTransient<IAzureBlobStorageProvider, AzureBlobStorageProvider>();
         }
 
         private void DatabaseMigrationUpdate(IServiceProvider services)

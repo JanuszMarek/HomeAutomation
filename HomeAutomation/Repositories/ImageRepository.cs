@@ -5,9 +5,9 @@ using HomeAutomation.Repositories.Interfaces;
 
 namespace HomeAutomation.Repositories
 {
-    public class UploadedImageRepository : BaseRepository<UploadedImage>, IUploadedImageRepository
+    public class ImageRepository : BaseRepository<Image>, IImageRepository
     {
-        public UploadedImageRepository(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
+        public ImageRepository(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
     }
