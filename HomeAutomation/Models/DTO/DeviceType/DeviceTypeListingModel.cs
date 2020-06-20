@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace HomeAutomation.Models.DTO.DeviceType
 {
-    public class DeviceTypeListingModel : IBaseModel
+    public class DeviceTypeListingModel : DeviceTypeBaseModel
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
+        public string ImageUrl { get; set; }
         public CategoryBaseModel Category { get; set; }
     }
 }

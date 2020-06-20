@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HomeAutomation.Models.DTO.Image;
 using HomeAutomation.Models.Entities;
 using HomeAutomation.Providers.Interfaces;
 using HomeAutomation.Repositories.Interfaces;
@@ -6,6 +7,7 @@ using HomeAutomation.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,18 +25,25 @@ namespace HomeAutomation.Services
             this.azureBlobStorageProvider = azureBlobStorageProvider;
         }
 
-        public async Task<long> CreateAsync(IFormFile imageFile)
+        public async Task<ImageUploadReturnModel> CreateAsync(IFormFile imageFile)
         {
-            if(IsImage(imageFile) && imageFile.Length > 0)
+            if (IsImage(imageFile) && imageFile.Length > 0)
             {
                 var uploadedImage = new Image();
+
                 using (Stream stream = imageFile.OpenReadStream())
                 {
                     uploadedImage.FilePath = await azureBlobStorageProvider.UploadFileToStorage(stream, imageFile.FileName);
                 }
                 repository.Create(uploadedImage);
                 await repository.SaveChanges();
-                return uploadedImage.Id;
+
+                var returnModel = new ImageUploadReturnModel()
+                {
+                    ImageId = uploadedImage.Id,
+                    ImageUrl = uploadedImage.FilePath
+                };
+                return returnModel;
             }
             throw new Exception("Uploaded file is not a image or is empty");
         }

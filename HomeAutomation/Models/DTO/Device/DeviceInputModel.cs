@@ -22,6 +22,6 @@ namespace HomeAutomation.Models.DTO.Device
         [Required]
         public long DeviceTypeId { get; set; }
 
-        public IFormFile LogoFile { get; set; }
+        public long ImageId { get; set; }
     }
 }

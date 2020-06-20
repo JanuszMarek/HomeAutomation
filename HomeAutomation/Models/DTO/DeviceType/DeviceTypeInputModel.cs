@@ -16,6 +16,6 @@ namespace HomeAutomation.Models.DTO.DeviceType
 
         [Required]
         public long CategoryId { get; set; }
-        public IFormFile LogoFile { get; set; }
+        public long ImageId { get; set; }
     }
 }

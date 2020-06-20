@@ -13,7 +13,5 @@ namespace HomeAutomation.Models.DTO.Category
 
         [MaxLength(1000)]
         public string Description { get; set; }
-
-        public IFormFile LogoFile { get; set; }
     }
 }

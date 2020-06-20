@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HomeAutomation.Models.DTO.Category
 {
-    public class CategoryListingModel : IBaseModel
+    public class CategoryListingModel : CategoryBaseModel
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

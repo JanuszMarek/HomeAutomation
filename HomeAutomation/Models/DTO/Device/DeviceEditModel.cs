@@ -14,5 +14,6 @@ namespace HomeAutomation.Models.DTO.Device
         public long ProducerId { get; set; }
 
         public long DeviceTypeId { get; set; }
+        public long ImageId { get; set; }
     }
 }

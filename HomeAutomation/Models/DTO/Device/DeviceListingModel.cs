@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace HomeAutomation.Models.DTO.Device
 {
-    public class DeviceListingModel : IBaseModel
+    public class DeviceListingModel : DeviceBaseModel
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
+        public string ImageUrl { get; set; }
         public ProducerBaseModel Producer { get; set; }
         public DeviceTypeBaseModel DeviceType { get; set; }
     }

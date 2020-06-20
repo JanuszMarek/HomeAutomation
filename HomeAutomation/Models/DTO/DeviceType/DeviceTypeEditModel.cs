@@ -12,5 +12,6 @@ namespace HomeAutomation.Models.DTO.DeviceType
         public string Description { get; set; }
 
         public long CategoryId { get; set; }
+        public long ImageId { get; set; }
     }
 }

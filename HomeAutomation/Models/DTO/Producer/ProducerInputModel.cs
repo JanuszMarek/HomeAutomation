@@ -14,6 +14,6 @@ namespace HomeAutomation.Models.DTO.Producer
         [MaxLength(1000)]
         public string Description { get; set; }
 
-        public IFormFile LogoFile { get; set; }
+        public long ImageId { get; set; }
     }
 }

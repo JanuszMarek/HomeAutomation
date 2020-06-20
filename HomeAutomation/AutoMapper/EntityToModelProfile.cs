@@ -23,32 +23,36 @@ namespace HomeAutomation.AutoMapper
         {
             CreateMap<Device, DeviceBaseModel>();
             CreateMap<Device, DeviceModel>();
-            CreateMap<Device, DeviceListingModel>();
             CreateMap<Device, DeviceEditModel>();
+            CreateMap<Device, DeviceListingModel>()
+                .ForMember(dst => dst.ImageUrl, opt => opt.MapFrom(src => src.Image.FilePath));
         }
 
         private void DeviceTypeToModel()
         {
             CreateMap<DeviceType, DeviceTypeBaseModel>();
             CreateMap<DeviceType, DeviceTypeModel>();
-            CreateMap<DeviceType, DeviceTypeListingModel>();
             CreateMap<DeviceType, DeviceTypeEditModel>();
+            CreateMap<DeviceType, DeviceTypeListingModel>()
+                .ForMember(dst => dst.ImageUrl, opt => opt.MapFrom(src => src.Image.FilePath));
         }
 
         private void CategoryToModel()
         {
             CreateMap<Category, CategoryBaseModel>();
             CreateMap<Category, CategoryModel>();
-            CreateMap<Category, CategoryListingModel>();
             CreateMap<Category, CategoryEditModel>();
+            CreateMap<Category, CategoryListingModel>()
+                .ForMember(dst => dst.ImageUrl, opt => opt.MapFrom(src => src.Image.FilePath));
         }
 
         private void ProducerToModel()
         {
             CreateMap<Producer, ProducerBaseModel>();
             CreateMap<Producer, ProducerModel>();
-            CreateMap<Producer, ProducerListingModel>();
             CreateMap<Producer, ProducerEditModel>();
+            CreateMap<Producer, ProducerListingModel>()
+                .ForMember(dst => dst.ImageUrl, opt => opt.MapFrom(src => src.Image.FilePath));
         }
 
         private void EntitiesToLookupModel()
