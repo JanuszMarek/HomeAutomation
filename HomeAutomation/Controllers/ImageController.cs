@@ -16,9 +16,9 @@ namespace HomeAutomation.Controllers
         }
 
         [HttpPost("upload")]
-        public IActionResult Upload([FromForm] IFormFile logoFile)
+        public IActionResult Upload(IFormFile imageFile)
         {
-            var resultId = uploadedImageService.CreateAsync(logoFile);
+            var resultId = uploadedImageService.CreateAsync(imageFile);
 
             return Ok(resultId);
         }
