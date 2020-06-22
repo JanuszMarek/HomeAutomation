@@ -1,5 +1,7 @@
 ﻿using HomeAutomation.Models.Abstract;
+using HomeAutomation.Models.Enums;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace HomeAutomation.Models.Entities
 {
@@ -12,6 +14,8 @@ namespace HomeAutomation.Models.Entities
         public long DeviceTypeId { get; set; }
 
         public DeviceType DeviceType { get; set; }
+
+        public ConnectionEnum Connection { get; set; }
 
         public static void CreateDatabaseScheme(ModelBuilder modelBuilder)
         {
@@ -38,7 +42,12 @@ namespace HomeAutomation.Models.Entities
                     .HasConstraintName("FK_Device_DeviceType");
 
                 entity.Property(e => e.RowVersion).IsRowVersion();
-            });
+
+                entity.Property(e => e.Connection)
+                    .HasConversion(
+                        v => v.ToString(),
+                        v => !string.IsNullOrEmpty(v) ? (ConnectionEnum)Enum.Parse(typeof(ConnectionEnum), v) : ConnectionEnum.None);
+                });
         }
     }
 }

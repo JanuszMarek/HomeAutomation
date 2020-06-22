@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace HomeAutomation.Models.Abstract.Interfaces
 {
-    public interface IConcurrency
+    public interface ICreateDate
     {
-        byte[] RowVersion { get; set; }
+        public DateTime CreateDate { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace HomeAutomation.Controllers
 
         [HttpPost]
         [ServiceFilter(typeof(ModelValidationFilter))]
-        public async Task<IActionResult> Create(DeviceTypeInputModel inputModel)
+        public async Task<IActionResult> Create(DeviceTypeCreateModel inputModel)
         {
             var createdId = await service.CreateAsync(inputModel);
             return Ok(new { id = createdId });
@@ -43,7 +43,7 @@ namespace HomeAutomation.Controllers
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ModelExistFilter<DeviceType>))]
         [ServiceFilter(typeof(ModelValidationFilter))]
-        public async Task<IActionResult> Update([FromRoute] long id, DeviceTypeInputModel updateModel)
+        public async Task<IActionResult> Update([FromRoute] long id, DeviceTypeCreateModel updateModel)
         {
             await service.UpdateAsync(id, updateModel);
             return Ok();

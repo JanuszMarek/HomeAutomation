@@ -22,7 +22,6 @@ namespace HomeAutomation.AutoMapper
         private void DeviceToModel()
         {
             CreateMap<Device, DeviceBaseModel>();
-            CreateMap<Device, DeviceModel>();
             CreateMap<Device, DeviceEditModel>();
             CreateMap<Device, DeviceListingModel>()
                 .ForMember(dst => dst.ImageUrl, opt => opt.MapFrom(src => src.Image.FilePath));
@@ -31,7 +30,6 @@ namespace HomeAutomation.AutoMapper
         private void DeviceTypeToModel()
         {
             CreateMap<DeviceType, DeviceTypeBaseModel>();
-            CreateMap<DeviceType, DeviceTypeModel>();
             CreateMap<DeviceType, DeviceTypeEditModel>();
             CreateMap<DeviceType, DeviceTypeListingModel>()
                 .ForMember(dst => dst.ImageUrl, opt => opt.MapFrom(src => src.Image.FilePath));
@@ -40,7 +38,6 @@ namespace HomeAutomation.AutoMapper
         private void CategoryToModel()
         {
             CreateMap<Category, CategoryBaseModel>();
-            CreateMap<Category, CategoryModel>();
             CreateMap<Category, CategoryEditModel>();
             CreateMap<Category, CategoryListingModel>()
                 .ForMember(dst => dst.ImageUrl, opt => opt.MapFrom(src => src.Image.FilePath));
@@ -49,7 +46,6 @@ namespace HomeAutomation.AutoMapper
         private void ProducerToModel()
         {
             CreateMap<Producer, ProducerBaseModel>();
-            CreateMap<Producer, ProducerModel>();
             CreateMap<Producer, ProducerEditModel>();
             CreateMap<Producer, ProducerListingModel>()
                 .ForMember(dst => dst.ImageUrl, opt => opt.MapFrom(src => src.Image.FilePath));

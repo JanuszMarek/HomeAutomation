@@ -2,7 +2,7 @@
 
 namespace HomeAutomation.Models.DTO.Producer
 {
-    public class ProducerEditModel : BaseEditModel
+    public class ProducerCreateModel : BaseCreateModel
     {
     }
 }

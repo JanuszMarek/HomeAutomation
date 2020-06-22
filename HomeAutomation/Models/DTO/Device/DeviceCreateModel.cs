@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HomeAutomation.Models.DTO.Device
 {
-    public class DeviceEditModel : BaseEditModel
+    public class DeviceCreateModel : BaseCreateModel
     {
         public decimal Price { get; set; }
         [Required]

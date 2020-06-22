@@ -12,9 +12,9 @@ namespace HomeAutomation.Services.Interfaces
         Task<bool> Exists(long id);
         Task<DTO> GetByIdAsync<DTO>(long id) where DTO : IBaseModel;
         Task<List<DTO>> Get<DTO>(Expression<Func<DTO, bool>> filter = null, Func<DTO, object> orderBy = null) where DTO : IBaseModel;
-        Task UpdateAsync(long id, IBusinessInputModel updateModel);
+        Task UpdateAsync(long id, IBaseCreateModel updateModel);
         Task DeleteAsync(long id);
-        Task<long> CreateAsync(IBusinessInputModel inputModel);
+        Task<long> CreateAsync(IBaseCreateModel inputModel);
         Task SaveChangesAsync();
     }
 }

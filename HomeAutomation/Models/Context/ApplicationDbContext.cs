@@ -81,14 +81,18 @@ namespace HomeAutomation.Models.Context
 			{
 				foreach (var entry in changedEntries)
 				{
-					if (entry.Entity is IConcurrency && entry.State == EntityState.Modified)
+                    var dateTimeNow = DateTime.Now;
+					if (entry.Entity is IUpdateDate && entry.State == EntityState.Modified)
 					{
-						entry.CurrentValues[nameof(IConcurrency.UpdateDate)] = DateTime.Now;
+						entry.CurrentValues[nameof(IUpdateDate.UpdateDate)] = dateTimeNow;
 					}
-                    if (entry.Entity is IConcurrency && entry.State == EntityState.Added)
+                    if (entry.Entity is IUpdateDate && entry.State == EntityState.Added)
                     {
-                        entry.CurrentValues[nameof(IConcurrency.CreateDate)] = DateTime.Now;
-                        entry.CurrentValues[nameof(IConcurrency.UpdateDate)] = entry.CurrentValues[nameof(IConcurrency.CreateDate)];
+                        entry.CurrentValues[nameof(IUpdateDate.UpdateDate)] = dateTimeNow;
+                    }
+                    if (entry.Entity is ICreateDate && entry.State == EntityState.Added)
+                    {
+                        entry.CurrentValues[nameof(ICreateDate.CreateDate)] = dateTimeNow;
                     }
                 }
 			}

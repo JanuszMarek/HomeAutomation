@@ -20,22 +20,22 @@ namespace HomeAutomation.AutoMapper
 
         private void ModelToDevice()
         {
-            CreateMap<DeviceInputModel, Device>();
+            CreateMap<DeviceCreateModel, Device>();
         }
 
         private void ModelToDeviceType()
         {
-            CreateMap<DeviceTypeInputModel, DeviceType>();
+            CreateMap<DeviceTypeCreateModel, DeviceType>();
         }
 
         private void ModelToCategory()
         {
-            CreateMap<CategoryInputModel, Category>();
+            CreateMap<CategoryCreateModel, Category>();
         }
 
         private void ModelToProducer()
         {
-            CreateMap<ProducerInputModel, Producer>();
+            CreateMap<ProducerCreateModel, Producer>();
         }
     }
 }

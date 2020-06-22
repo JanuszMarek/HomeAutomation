@@ -26,7 +26,7 @@ namespace HomeAutomation.Services
             return await repository.Exists(id);
         }
 
-        public async Task<long> CreateAsync(IBusinessInputModel inputModel)
+        public async Task<long> CreateAsync(IBaseCreateModel inputModel)
         {
             var entity = mapper.Map<T>(inputModel);
 
@@ -34,7 +34,7 @@ namespace HomeAutomation.Services
             await SaveChangesAsync();
             return entity.Id;
         }
-        public async Task UpdateAsync(long id, IBusinessInputModel updateModel)
+        public async Task UpdateAsync(long id, IBaseCreateModel updateModel)
         {
             var entity = await repository.GetEntityById(id);
             mapper.Map(updateModel, entity);

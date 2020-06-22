@@ -1,14 +1,8 @@
-﻿using HomeAutomation.Models.DTO.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using HomeAutomation.Models.DTO.Abstract;
 
 namespace HomeAutomation.Models.DTO.Producer
 {
-    public class ProducerBaseModel : IBaseModel
+    public class ProducerBaseModel : BaseModel
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
     }
 }

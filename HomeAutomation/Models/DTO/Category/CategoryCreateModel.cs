@@ -2,7 +2,7 @@
 
 namespace HomeAutomation.Models.DTO.Category
 {
-    public class CategoryBaseModel : BaseModel
+    public class CategoryCreateModel : BaseCreateModel
     {
     }
 }
